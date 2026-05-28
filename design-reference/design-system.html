@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EMI3 Design System - Reference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&family=Roboto+Condensed:ital,wght@0,400;0,700;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --emi-gold:        #EDB012;
+    --emi-dark:        #404149;
+    --emi-light-grey:  #D2D2D9;
+    --emi-off-white:   #F9F9FC;
+    --emi-red:         #E31212;
+    --emi-orange:      #ED8738;
+    --emi-blue:        #307AD6;
+    --emi-green:       #24BA78;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    padding: 0 0 80px;
+    background: var(--emi-off-white);
+    font-family: 'Roboto', Arial, Helvetica, system-ui, sans-serif;
+    color: var(--emi-dark);
+    line-height: 1.5;
+  }
+
+  header.hero {
+    background: var(--emi-dark);
+    color: var(--emi-off-white);
+    padding: 40px 60px;
+    border-top: 6px solid var(--emi-gold);
+  }
+  header.hero img {
+    height: 40px;
+    margin-bottom: 16px;
+  }
+  header.hero h1 {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    font-size: 36px;
+    letter-spacing: -0.01em;
+  }
+  header.hero p {
+    margin: 6px 0 0;
+    font-size: 16px;
+    opacity: 0.8;
+    max-width: 720px;
+  }
+
+  main {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  section {
+    margin-top: 56px;
+  }
+  section > h2 {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--emi-dark);
+    opacity: 0.6;
+    margin: 0 0 8px 0;
+  }
+  section > .section-title {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 26px;
+    margin: 0 0 24px 0;
+  }
+
+  /* ───── Palette ───── */
+  .palette-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  .swatch {
+    background: #FFFFFF;
+    border: 1px solid var(--emi-light-grey);
+    border-radius: 6px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .swatch .chip {
+    height: 110px;
+  }
+  .swatch .meta {
+    padding: 14px 16px;
+  }
+  .swatch .role {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--emi-dark);
+    opacity: 0.6;
+    margin-bottom: 2px;
+  }
+  .swatch .name {
+    font-weight: 700;
+    font-size: 16px;
+  }
+  .swatch .hex {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 700;
+    color: var(--emi-dark);
+    margin-top: 6px;
+  }
+  .swatch .rgb {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 13px;
+    opacity: 0.6;
+  }
+  .swatch .usage {
+    font-size: 13px;
+    color: var(--emi-dark);
+    opacity: 0.75;
+    margin-top: 8px;
+  }
+
+  /* ───── Typography ───── */
+  .type-grid {
+    display: grid;
+    grid-template-columns: 200px 1fr 220px;
+    gap: 20px;
+    align-items: center;
+    padding: 18px 0;
+    border-bottom: 1px dashed var(--emi-light-grey);
+  }
+  .type-grid:last-child { border-bottom: 0; }
+  .type-grid .label {
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--emi-dark);
+    opacity: 0.6;
+  }
+  .type-grid .sample {
+    color: var(--emi-dark);
+  }
+  .type-grid .usage {
+    font-size: 13px;
+    color: var(--emi-dark);
+    opacity: 0.65;
+  }
+
+  .t-black     { font-family: 'Roboto', sans-serif; font-weight: 900; font-size: 36px; line-height: 1.1; }
+  .t-bold      { font-family: 'Roboto', sans-serif; font-weight: 700; font-size: 24px; line-height: 1.2; }
+  .t-regular   { font-family: 'Roboto', sans-serif; font-weight: 400; font-size: 17px; line-height: 1.5; }
+  .t-light     { font-family: 'Roboto', sans-serif; font-weight: 300; font-size: 17px; line-height: 1.5; }
+  .t-cond-bold { font-family: 'Roboto Condensed', sans-serif; font-weight: 700; font-size: 17px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .t-cond-reg  { font-family: 'Roboto Condensed', sans-serif; font-weight: 400; font-size: 15px; }
+  .t-cond-li   { font-family: 'Roboto Condensed', sans-serif; font-weight: 300; font-style: italic; font-size: 14px; }
+
+  /* ───── Buttons ───── */
+  .btn-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+  .btn-primary {
+    border: 0;
+    border-radius: 7px;
+    padding: 14px 28px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 17px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #FFFFFF;
+    cursor: pointer;
+  }
+  .btn-primary.save   { background: var(--emi-green); }
+  .btn-primary.delete { background: var(--emi-red); }
+  .btn-primary.cancel { background: var(--emi-orange); }
+  .btn-primary.info   { background: var(--emi-blue); }
+
+  .btn-secondary {
+    border: 1px solid var(--emi-light-grey);
+    background: #FFFFFF;
+    border-radius: 999px;
+    padding: 10px 22px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--emi-dark);
+    cursor: pointer;
+  }
+
+  .btn-tap {
+    border: 0;
+    border-radius: 8px;
+    width: 130px;
+    height: 130px;
+    color: #FFFFFF;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    text-align: center;
+    cursor: pointer;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 0 rgba(0,0,0,0.15);
+  }
+  .btn-tap .num { font-size: 32px; font-weight: 900; line-height: 1; margin-bottom: 4px; }
+  .btn-tap .lbl { font-size: 13px; }
+
+  .btn-tap.m1 { background: var(--emi-red); }
+  .btn-tap.m2 { background: var(--emi-orange); }
+  .btn-tap.m3 { background: var(--emi-gold); }
+  .btn-tap.m4 { background: var(--emi-orange); }
+  .btn-tap.m5 { background: var(--emi-green); }
+  .btn-tap.m6 { background: var(--emi-green); }
+  .btn-tap.locked {
+    background: var(--emi-light-grey);
+    color: var(--emi-dark);
+    opacity: 0.6;
+    box-shadow: none;
+    cursor: not-allowed;
+  }
+
+  /* ───── Status pills ───── */
+  .pill {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 999px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #FFFFFF;
+  }
+  .pill.active   { background: var(--emi-blue); }
+  .pill.stopped  { background: var(--emi-dark); }
+  .pill.complete { background: var(--emi-green); }
+
+  /* ───── Card ───── */
+  .card {
+    background: #FFFFFF;
+    border: 1px solid var(--emi-light-grey);
+    border-radius: 6px;
+    padding: 20px;
+  }
+  .card.dark {
+    background: var(--emi-dark);
+    color: var(--emi-off-white);
+    border-color: var(--emi-dark);
+  }
+  .card h4 {
+    margin: 0 0 6px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--emi-gold);
+  }
+  .card.dark h4 { color: var(--emi-gold); }
+
+  /* ───── Input ───── */
+  input[type="text"], textarea {
+    width: 100%;
+    border: 1px solid var(--emi-light-grey);
+    border-radius: 6px;
+    padding: 12px 14px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    color: var(--emi-dark);
+  }
+  input[type="text"]:focus, textarea:focus {
+    outline: 2px solid var(--emi-blue);
+    border-color: transparent;
+  }
+
+  /* ───── Logo block ───── */
+  .logo-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .logo-tile {
+    background: #FFFFFF;
+    border: 1px solid var(--emi-light-grey);
+    border-radius: 6px;
+    padding: 32px;
+    text-align: center;
+  }
+  .logo-tile.dark { background: #000000; }
+  .logo-tile img { height: 56px; }
+
+  /* ───── Hex pill ───── */
+  .hex-pill {
+    display: inline-block;
+    background: var(--emi-light-grey);
+    color: var(--emi-dark);
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 4px;
+  }
+
+  ul.rules {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  ul.rules li {
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--emi-light-grey);
+    font-size: 15px;
+  }
+  ul.rules li:last-child { border-bottom: 0; }
+  ul.rules li strong {
+    font-family: 'Roboto Condensed', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 13px;
+    color: var(--emi-dark);
+    opacity: 0.7;
+    margin-right: 8px;
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <img src="emi3-logo.png" alt="EMI3">
+  <h1>EMI3 Design System</h1>
+  <p>Reference for applying EMI brand standards. Open this file alongside <code>mockup.md</code> to see the layout intent + brand application together.</p>
+</header>
+
+<main>
+
+<!-- ─────────────────────────── PALETTE ─────────────────────────── -->
+<section>
+  <h2>1 · Palette</h2>
+  <div class="section-title">Eight roles. Every colour conveys meaning.</div>
+
+  <div class="palette-grid">
+
+    <div class="swatch">
+      <div class="chip" style="background: #EDB012;"></div>
+      <div class="meta">
+        <div class="role">Primary</div>
+        <div class="name">Gold</div>
+        <div class="hex">#EDB012</div>
+        <div class="rgb">rgb(237, 176, 18)</div>
+        <div class="usage">Brand accent. Logo gears. Highlights. Never a whole-screen fill.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="chip" style="background: #404149;"></div>
+      <div class="meta">
+        <div class="role">Dark neutral</div>
+        <div class="name">Charcoal</div>
+        <div class="hex">#404149</div>
+        <div class="rgb">rgb(64, 65, 73)</div>
+        <div class="usage">Primary text, headings, dark surfaces, icon strokes.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="chip" style="background: #D2D2D9; border-bottom: 1px solid #b8b8c0;"></div>
+      <div class="meta">
+        <div class="role">Light grey</div>
+        <div class="name">Mist</div>
+        <div class="hex">#D2D2D9</div>
+        <div class="rgb">rgb(210, 210, 217)</div>
+        <div class="usage">Dividers, disabled buttons, table header rows, subtle backgrounds.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="chip" style="background: #F9F9FC; border-bottom: 1px solid #e8e8ee;"></div>
+      <div class="meta">
+        <div class="role">Background</div>
+        <div class="name">Off-white</div>
+        <div class="hex">#F9F9FC</div>
+        <div class="rgb">rgb(249, 249, 252)</div>
+        <div class="usage">Page backgrounds, card fills. Softer than pure white.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="chip" style="background: #E31212;"></div>
+      <div class="meta">
+        <div class="role">Destructive</div>
+        <div class="name">Red</div>
+        <div class="hex">#E31212</div>
+        <div class="rgb">rgb(227, 18, 18)</div>
+        <div class="usage">Delete, errors, inactive toggles, over-target metrics. Milestone 1 ("Start breakdown").</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="chip" style="background: #ED8738;"></div>
+      <div class="meta">
+        <div class="role">Neutral-warning</div>
+        <div class="name">Orange</div>
+        <div class="hex">#ED8738</div>
+        <div class="rgb">rgb(237, 135, 56)</div>
+        <div class="usage">Cancel, medium-weight neutral actions. Milestone 2 ("Arrived"). Milestone 4 ("Start repair").</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="chip" style="background: #307AD6;"></div>
+      <div class="meta">
+        <div class="role">Neutral-info</div>
+        <div class="name">Blue</div>
+        <div class="hex">#307AD6</div>
+        <div class="rgb">rgb(48, 122, 214)</div>
+        <div class="usage">Links, secondary buttons, "Active" status, informational icons.</div>
+      </div>
+    </div>
+
+    <div class="swatch">
+      <div class="chip" style="background: #24BA78;"></div>
+      <div class="meta">
+        <div class="role">Positive</div>
+        <div class="name">Green</div>
+        <div class="hex">#24BA78</div>
+        <div class="rgb">rgb(36, 186, 120)</div>
+        <div class="usage">Save, success, "Completed" status. Milestones 5 & 6 (repair done, returned to service).</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─────────────────────────── SEMANTIC RULES ─────────────────────────── -->
+<section>
+  <h2>2 · Semantic rules</h2>
+  <div class="section-title">Colour conveys function. Don't break the signal.</div>
+
+  <ul class="rules">
+    <li><strong>Green</strong> Save, positive secondary actions, success states, "Completed" status, on-target metrics.</li>
+    <li><strong>Red</strong> Delete, destructive, errors, "Start breakdown" (this is a *negative event being captured*, hence red).</li>
+    <li><strong>Orange</strong> Cancel, "in-flight" middling states, milestones 2 and 4 (response, start repair).</li>
+    <li><strong>Blue</strong> Informational, links, "Active" status pill.</li>
+    <li><strong>Gold <span class="hex-pill">#EDB012</span></strong> Brand accent only. Never a whole-screen fill, never body text colour.</li>
+    <li><strong>Dark <span class="hex-pill">#404149</span></strong> Body text on light backgrounds; surface fill for dark admin view.</li>
+  </ul>
+</section>
+
+<!-- ─────────────────────────── TYPOGRAPHY ─────────────────────────── -->
+<section>
+  <h2>3 · Typography</h2>
+  <div class="section-title">Roboto, always. Roboto Condensed for tight labels.</div>
+
+  <div class="type-grid">
+    <div class="label">Roboto Black · 36px</div>
+    <div class="sample t-black">Repair Event</div>
+    <div class="usage">Display headlines, hero statements.</div>
+  </div>
+
+  <div class="type-grid">
+    <div class="label">Roboto Bold · 24px</div>
+    <div class="sample t-bold">Active repair</div>
+    <div class="usage">Page titles, section headings.</div>
+  </div>
+
+  <div class="type-grid">
+    <div class="label">Roboto Regular · 17px</div>
+    <div class="sample t-regular">CAT 793F #12 - hydraulic hose split near the hoist cylinder.</div>
+    <div class="usage">Body copy, table cells, paragraphs.</div>
+  </div>
+
+  <div class="type-grid">
+    <div class="label">Roboto Light · 17px</div>
+    <div class="sample t-light">Registered by J Smith at 08:12.</div>
+    <div class="usage">Captions, quieter secondary text.</div>
+  </div>
+
+  <div class="type-grid">
+    <div class="label">Roboto Cond. Bold · 17px</div>
+    <div class="sample t-cond-bold">Start breakdown</div>
+    <div class="usage">Button labels (uppercase for primary), tab labels, table column headers.</div>
+  </div>
+
+  <div class="type-grid">
+    <div class="label">Roboto Cond. Regular · 15px</div>
+    <div class="sample t-cond-reg">Time · Event · Detail · Operator</div>
+    <div class="usage">Dense data, multi-column tables.</div>
+  </div>
+
+  <div class="type-grid">
+    <div class="label">Roboto Cond. Light Italic · 14px</div>
+    <div class="sample t-cond-li">Auto-generated from milestone taps. No technician typing required.</div>
+    <div class="usage">Captions, callouts, supportive copy.</div>
+  </div>
+</section>
+
+<!-- ─────────────────────────── BUTTONS ─────────────────────────── -->
+<section>
+  <h2>4 · Buttons</h2>
+  <div class="section-title">Primary, secondary, milestone, locked.</div>
+
+  <p><strong>Primary buttons</strong> - 7px corner radius, filled, uppercase Condensed Bold:</p>
+  <div class="btn-row">
+    <button class="btn-primary save">Save</button>
+    <button class="btn-primary cancel">Cancel</button>
+    <button class="btn-primary delete">Delete</button>
+    <button class="btn-primary info">More info</button>
+  </div>
+
+  <p style="margin-top: 28px;"><strong>Secondary buttons</strong> - pill, sentence case Condensed Bold:</p>
+  <div class="btn-row">
+    <button class="btn-secondary">Filter</button>
+    <button class="btn-secondary">Export</button>
+    <button class="btn-secondary">Show all</button>
+  </div>
+
+  <p style="margin-top: 28px;"><strong>Milestone buttons</strong> - large square, phase colour, uppercase Condensed Bold:</p>
+  <div class="btn-row">
+    <button class="btn-tap m1"><span class="num">1</span><span class="lbl">Start<br>breakdown</span></button>
+    <button class="btn-tap m2"><span class="num">2</span><span class="lbl">Arrived at<br>machine</span></button>
+    <button class="btn-tap m3"><span class="num">3</span><span class="lbl">Problem<br>identified</span></button>
+    <button class="btn-tap m4"><span class="num">4</span><span class="lbl">Start<br>repair</span></button>
+    <button class="btn-tap m5"><span class="num">5</span><span class="lbl">Repair<br>complete</span></button>
+    <button class="btn-tap m6"><span class="num">6</span><span class="lbl">Return to<br>service</span></button>
+  </div>
+
+  <p style="margin-top: 28px;"><strong>Locked milestone</strong> - light-grey, not tappable until predecessor is stamped:</p>
+  <div class="btn-row">
+    <button class="btn-tap locked"><span class="num">4</span><span class="lbl">Start<br>repair</span></button>
+  </div>
+
+  <p style="margin-top: 16px; font-size: 14px; opacity: 0.7;">
+    Note on the uppercase-button convention: the legacy EMI product uses UPPERCASE Condensed Bold for primary buttons. For new web work, sentence case is also acceptable - but make a deliberate call and document it in the README.
+  </p>
+</section>
+
+<!-- ─────────────────────────── STATUS PILLS ─────────────────────────── -->
+<section>
+  <h2>5 · Status pills</h2>
+  <div class="section-title">Repair status uses the semantic palette.</div>
+  <div class="btn-row">
+    <span class="pill active">Active</span>
+    <span class="pill stopped">Stopped</span>
+    <span class="pill complete">Completed</span>
+  </div>
+</section>
+
+<!-- ─────────────────────────── CARDS / SURFACES ─────────────────────────── -->
+<section>
+  <h2>6 · Cards & surfaces</h2>
+  <div class="section-title">Light card for tablet view. Dark card for admin view.</div>
+
+  <div class="logo-row">
+    <div class="card">
+      <h4>Tablet surface</h4>
+      <p style="margin: 6px 0 12px;">Page background <span class="hex-pill">#F9F9FC</span>. Cards on <span class="hex-pill">#FFFFFF</span> with a <span class="hex-pill">#D2D2D9</span> hairline.</p>
+      <p style="margin: 0; opacity: 0.7; font-size: 14px;">Body text in <span class="hex-pill">#404149</span>. Section headings in Roboto Bold.</p>
+    </div>
+    <div class="card dark">
+      <h4>Admin surface</h4>
+      <p style="margin: 6px 0 12px; color: #FFFFFF;">Page background <span class="hex-pill" style="background: rgba(255,255,255,0.15); color: var(--emi-off-white);">#404149</span>. Cards on a translucent white overlay.</p>
+      <p style="margin: 0; opacity: 0.7; font-size: 14px; color: var(--emi-off-white);">Headings in <span class="hex-pill" style="background: var(--emi-gold); color: var(--emi-dark);">#EDB012</span>. Body in off-white.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────────────── INPUTS ─────────────────────────── -->
+<section>
+  <h2>7 · Inputs</h2>
+  <div class="section-title">Text input, focus state.</div>
+  <p style="margin: 0 0 8px; font-size: 14px;">Default:</p>
+  <input type="text" placeholder="Add a finding...">
+  <p style="margin: 14px 0 8px; font-size: 14px;">Focused (blue 2px outline):</p>
+  <input type="text" placeholder="Add a finding..." autofocus>
+  <p style="margin: 14px 0 8px; font-size: 14px;">Textarea (used for Finding / Action / Part / Note modal):</p>
+  <textarea placeholder="Hydraulic hose split near the hoist cylinder. Wet ground around the boom."></textarea>
+</section>
+
+<!-- ─────────────────────────── LOGO ─────────────────────────── -->
+<section>
+  <h2>8 · Logo</h2>
+  <div class="section-title">Use the bundled file. Don't recolour, redraw, or stretch.</div>
+
+  <div class="logo-row">
+    <div class="logo-tile">
+      <img src="emi3-logo.png" alt="EMI3 logo on light">
+      <p style="margin: 16px 0 0; font-size: 13px; opacity: 0.65;">On light backgrounds - primary lockup.</p>
+    </div>
+    <div class="logo-tile dark">
+      <img src="emi3-logo.png" alt="EMI3 logo on dark" style="filter: brightness(0) invert(1);">
+      <p style="margin: 16px 0 0; font-size: 13px; color: rgba(255,255,255,0.65);">On dark backgrounds (this is a CSS-inverted preview - in production we'd use a proper white-on-black logo variant).</p>
+    </div>
+  </div>
+
+  <p style="margin-top: 16px; font-size: 14px; opacity: 0.7;">
+    Clear space around the logo ≈ one gear-tooth height on all sides. Don't put text or shapes inside that clear space.
+  </p>
+</section>
+
+</main>
+
+</body>
+</html>

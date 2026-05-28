@@ -1,0 +1,18 @@
+/*
+ * Minimal global styles. The brand palette and component conventions live
+ * in design-reference/design-system.html and the .claude/skills/emi3-branding
+ * skill - read those, then bring in colours, type weights, and component
+ * styling however you like (CSS modules, plain CSS, your call).
+ */
+
+* { box-sizing: border-box; }
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+body {
+  font-family: 'Roboto', Arial, Helvetica, system-ui, sans-serif;
+}
