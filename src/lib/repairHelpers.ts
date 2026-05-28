@@ -16,7 +16,6 @@ const METRIC_THRESHOLDS: Record<MetricKey, { good: number; ok: number }> = {
   total: { good: 90, ok: 180 },
 };
 
-// Display labels stay separate from persisted milestone kinds so entries remain compact.
 export const MILESTONE_LABELS: Record<MilestoneKind, string> = {
   StartBreakdown: 'Start Breakdown',
   ArrivedAtMachine: 'Arrived at Machine',
@@ -26,7 +25,6 @@ export const MILESTONE_LABELS: Record<MilestoneKind, string> = {
   ReturnToService: 'Return to Service',
 };
 
-// Admin timeline labels read like events rather than button text.
 export const MILESTONE_EVENT_LABELS: Record<MilestoneKind, string> = {
   StartBreakdown: 'Breakdown reported',
   ArrivedAtMachine: 'Technician arrived',
@@ -43,7 +41,6 @@ export function findMilestoneEntry(event: RepairEvent, kind: MilestoneKind): Ext
 }
 
 export function getNextMilestone(event: RepairEvent): MilestoneKind | null {
-  // The next tap is the first milestone kind missing from the append-only stream.
   return MILESTONE_SEQUENCE.find((kind) => !findMilestoneEntry(event, kind)) ?? null;
 }
 
@@ -134,7 +131,6 @@ export function createNewActiveRepairEvent(events: readonly RepairEvent[], now =
 }
 
 export function appendMilestoneEntry(event: RepairEvent, kind: MilestoneKind, at = new Date().toISOString(), by = 'J Smith'): RepairEvent {
-  // Return to Service is the only milestone that closes capture in v1.
   return {
     ...event,
     status: kind === 'ReturnToService' ? 'Completed' : event.status,

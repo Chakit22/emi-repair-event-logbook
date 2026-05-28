@@ -38,6 +38,17 @@ Metrics are v1 assumptions:
 
 Unfinished metrics show `-` until both required milestones exist.
 
+## Testing
+
+Automated verification used:
+
+```bash
+npm run test -- --run
+npm run build
+```
+
+I also ran Browser-based QA with the Codex Browser tool. That pass inspected rendered UI styles for Roboto and EMI color tokens, checked the Tablet/Admin flow behavior, and verified milestone sequencing, the annotation modal, disabled media actions, completed repair state, Admin breakdown cards, timeline ordering, and metrics. I also checked responsive viewports for layout overflow.
+
 ## Design and prototype process
 
 I reviewed the brief and EMI design reference, used Codex's Figma skill to create prototype concepts for the Tablet and Admin flows, and used those prototypes to guide the final UI structure. The final implementation keeps the palette, logo, phase colors, and work-focused layout while staying practical for the exercise scope.

@@ -38,7 +38,6 @@ export function App() {
   }
 
   function handleMilestoneTap(kind: MilestoneKind) {
-    // Guard here as well as in the button state so milestones remain append-only and ordered.
     if (!tabletEvent || getNextMilestone(tabletEvent) !== kind) return;
     updateEvent(appendMilestoneEntry(tabletEvent, kind, new Date().toISOString(), CURRENT_USER));
   }
