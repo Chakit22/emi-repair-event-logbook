@@ -53,6 +53,8 @@ I also ran Browser-based QA with the Codex Browser tool. That pass inspected ren
 
 I reviewed the brief and EMI design reference, used Codex's Figma skill to create prototype concepts for the Tablet and Admin flows, and used those prototypes to guide the final UI structure. The final implementation keeps the palette, logo, phase colors, and work-focused layout while staying practical for the exercise scope.
 
+Figma prototype: [EMI Repair Event Prototype](https://www.figma.com/design/aCRadPj9GTmVR5wV97C1iE/EMI-Repair-Event-Prototype?node-id=0-1&t=0DObMOrh8zmJh8dt-1)
+
 ## AI/Codex usage
 
 I used Codex for requirement breakdown, planning, Figma skill prototyping, prototype discussion, and implementation support. I directed decisions around the data model, scope, testing, and trade-offs, and reviewed the code so it can be explained in an interview.
