@@ -66,30 +66,30 @@ export function TabletView({ event, onMilestoneTap, onSaveAnnotation, onStartNew
         ))}
       </section>
 
-      {event.status !== 'Completed' ? (
-        <section className="annotation-actions" aria-label="Between milestones">
-          <h2>Between milestones</h2>
-          <div className="action-row">
-            {ANNOTATION_KINDS.map((kind) => (
-              <button key={kind} type="button" disabled={!captureOpen} onClick={() => setModalKind(kind)}>
-                Add {kind}
-              </button>
-            ))}
-            <button type="button" disabled title="Not in v1">
-              Add Photo
+      <section className="annotation-actions" aria-label="Between milestones">
+        <h2>Between milestones</h2>
+        <div className="action-row">
+          {ANNOTATION_KINDS.map((kind) => (
+            <button key={kind} type="button" disabled={!captureOpen} onClick={() => setModalKind(kind)}>
+              Add {kind}
             </button>
-            <button type="button" disabled title="Not in v1">
-              Record Audio
-            </button>
-          </div>
-        </section>
-      ) : (
+          ))}
+          <button type="button" disabled title="Not in v1">
+            Add Photo
+          </button>
+          <button type="button" disabled title="Not in v1">
+            Record Audio
+          </button>
+        </div>
+      </section>
+
+      {event.status === 'Completed' ? (
         <div className="completed-action">
           <button type="button" onClick={onStartNewRepair}>
             Start a new repair
           </button>
         </div>
-      )}
+      ) : null}
 
       <RecentEntries entries={annotations} />
 

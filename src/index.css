@@ -7,7 +7,7 @@
   --emi-orange: #ed8738;
   --emi-blue: #307ad6;
   --emi-green: #24ba78;
-  --ink: #24252a;
+  --ink: var(--emi-dark);
   --line: rgba(64, 65, 73, 0.16);
 }
 
@@ -177,7 +177,7 @@ button {
 }
 
 .status-stopped {
-  background: #656772;
+  background: var(--emi-dark);
 }
 
 .status-completed {
@@ -224,12 +224,11 @@ button {
 .milestone-tile.next::after {
   content: '';
   position: absolute;
-  bottom: -13px;
-  width: 0;
-  height: 0;
-  border-left: 9px solid transparent;
-  border-right: 9px solid transparent;
-  border-top: 10px solid var(--emi-gold);
+  bottom: 7px;
+  width: 18px;
+  height: 10px;
+  background: var(--emi-gold);
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
 }
 
 .phase-red {
