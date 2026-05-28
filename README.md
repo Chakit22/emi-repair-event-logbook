@@ -2,6 +2,8 @@
 
 An append-only repair event logbook for capturing breakdown milestones and technician annotations. The app keeps one chronological entry stream per repair event, so milestone taps and notes can be reviewed together without a separate admin data model.
 
+Live deployment: https://emi-repair-event-logbook.vercel.app
+
 ## Run it
 
 ```bash
