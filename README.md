@@ -1,53 +1,53 @@
-# EMI Coding Exercise
+# EMI Repair Event Logbook
 
-Welcome. This is the starter repo for the EMI junior developer coding exercise.
-
-## First: don't fork - use the template
-
-Click the green **Use this template** button at the top of the GitHub page, then **Create a new repository**. This gives you a clean repo of your own, with no link back to ours.
-
-![Use this template -> Create a new repository](./.github/use-this-template.png)
-
-Once that's done, clone your new repo locally and carry on.
-
-## Start here
-
-1. Read **[`BRIEF.md`](./BRIEF.md)** - what to build, what we'll judge, what to deliver.
-2. Look in **[`design-reference/`](./design-reference/)** - layout wireframes (`mockup.md`) and brand reference (`design-system.html`, open in a browser).
+An append-only repair event logbook for capturing breakdown milestones and technician annotations. The app keeps one chronological entry stream per repair event, so milestone taps and notes can be reviewed together without a separate admin data model.
 
 ## Run it
 
 ```bash
 npm install
 npm run dev
+npm run test
+npm run build
 ```
 
-You'll get a blank page with the words "Build me". That's the starting point.
+## How it works
 
-## What's already wired up
+The Tablet view is the technician capture surface. It shows the active repair, six ordered milestone buttons, and annotation actions for findings, actions, parts, and notes. Only the next incomplete milestone can be tapped. Annotation capture opens after Start Breakdown and locks again after Return to Service. Photo and audio controls are shown but disabled because they are outside v1.
 
-- **Vite + React 19 + TypeScript** in strict mode.
-- **Roboto** preconnected and linked in `index.html` (use it; the brand requires it).
-- **`src/lib/types.ts`** - domain types for the Repair Event (extend or replace as you like).
-- **`src/lib/seed.ts`** - sample data so the admin view has something to render from the start.
-- **`src/lib/storage.ts`** - optional `localStorage` helper. Use it if you want persistence.
+The Admin view is read-only. It lists active repairs first, then historical repairs, and lets a supervisor select a breakdown card to review the same append-only timeline. Milestones and annotations are interleaved by timestamp, and metrics are calculated from milestone pairs.
 
-The styling is up to you. The brand palette, type weights, and component specs are in `design-reference/design-system.html` - read it, then bring the palette and type in however you like.
+State is intentionally in-memory React state. A refresh resets to seeded demo data, which keeps the coding exercise focused on event capture, timeline review, and metric logic rather than persistence or authentication.
 
-## What you'll add
+## Event rules
 
-The brief tells you the full scope. In rough order of priority:
+Entries are append-only in v1. There is no edit or delete behavior because repair logs should preserve what happened and when. A production correction flow should add audited correction entries rather than mutate old data.
 
-- A tablet view: six milestone buttons + add-annotation buttons + a modal.
-- An admin view: timeline + auto-calculated metrics.
-- A header toggle to swap between them.
+Admin is read-only for the same reason: supervisors can inspect the event stream and metrics without changing technician-captured history.
 
-## Time
+## Metrics
 
-Around 2 hours of focused work. Don't grind it for a weekend.
+Metrics are v1 assumptions:
 
-## Questions
+- Response time: Arrived at Machine minus Start Breakdown. Good <= 15 min, ok <= 30 min, bad > 30 min.
+- Diagnosis time: Problem Identified minus Arrived at Machine. Good <= 20 min, ok <= 45 min, bad > 45 min.
+- Repair time: Repair Complete minus Start Repair. Good <= 60 min, ok <= 120 min, bad > 120 min.
+- Total downtime: Return to Service minus Start Breakdown. Good <= 90 min, ok <= 180 min, bad > 180 min.
 
-If something's unclear, make a sensible call and note it in your README when you submit. We'd rather see your judgement than a clarifying email.
+Unfinished metrics show `-` until both required milestones exist.
 
-Good luck.
+## Design and prototype process
+
+I reviewed the brief and EMI design reference, created Figma prototype concepts for the Tablet and Admin flows, and used those prototypes to guide the final UI structure. The final implementation keeps the palette, logo, phase colors, and work-focused layout while staying practical for the exercise scope.
+
+## AI/Codex usage
+
+I used Codex for requirement breakdown, planning, prototype discussion, and implementation support. I directed decisions around the data model, scope, testing, and trade-offs, and reviewed the code so it can be explained in an interview.
+
+## Trade-offs
+
+- No API, database, login, or localStorage persistence in v1.
+- No edit, delete, filtering, or search controls.
+- New repairs use fixed demo details instead of a create-repair form.
+- Media capture is represented as disabled UI only.
+- Metric thresholds are simple operational assumptions and should be calibrated with EMI data.
