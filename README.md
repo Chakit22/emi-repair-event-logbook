@@ -40,11 +40,11 @@ Unfinished metrics show `-` until both required milestones exist.
 
 ## Design and prototype process
 
-I reviewed the brief and EMI design reference, created Figma prototype concepts for the Tablet and Admin flows, and used those prototypes to guide the final UI structure. The final implementation keeps the palette, logo, phase colors, and work-focused layout while staying practical for the exercise scope.
+I reviewed the brief and EMI design reference, used Codex's Figma skill to create prototype concepts for the Tablet and Admin flows, and used those prototypes to guide the final UI structure. The final implementation keeps the palette, logo, phase colors, and work-focused layout while staying practical for the exercise scope.
 
 ## AI/Codex usage
 
-I used Codex for requirement breakdown, planning, prototype discussion, and implementation support. I directed decisions around the data model, scope, testing, and trade-offs, and reviewed the code so it can be explained in an interview.
+I used Codex for requirement breakdown, planning, Figma skill prototyping, prototype discussion, and implementation support. I directed decisions around the data model, scope, testing, and trade-offs, and reviewed the code so it can be explained in an interview.
 
 ## Trade-offs
 
