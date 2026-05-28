@@ -20,6 +20,7 @@ export function AdminView({ events, selectedEvent, onSelectEvent }: AdminViewPro
   const orderedEvents = useMemo(
     () =>
       [...events].sort((a, b) => {
+        // Keep active work first so the supervisor sees the live breakdown before history.
         if (a.status === 'Active' && b.status !== 'Active') return -1;
         if (b.status === 'Active' && a.status !== 'Active') return 1;
         return new Date(b.registeredAt).getTime() - new Date(a.registeredAt).getTime();
@@ -71,6 +72,7 @@ type BreakdownCardProps = {
 function BreakdownCard({ event, selected, onSelect }: BreakdownCardProps) {
   const metrics = calculateMetrics(event);
   const lastEntry = getLastEntry(event);
+  // Completed cards summarize downtime; in-flight cards show the freshest technician tap.
   const metric = event.status === 'Completed' ? `${formatMinutes(metrics.total.minutes)} total` : `last tap ${lastEntry ? formatTime(lastEntry.at) : '-'}`;
 
   return (
@@ -85,6 +87,7 @@ function BreakdownCard({ event, selected, onSelect }: BreakdownCardProps) {
 }
 
 function TimelineTable({ event }: { event: RepairEvent }) {
+  // The single entry stream is sorted here so milestones and notes stay interleaved.
   const entries = sortTimelineEntries(event.entries);
 
   return (

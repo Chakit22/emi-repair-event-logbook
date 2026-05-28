@@ -69,17 +69,23 @@ export function TabletView({ event, onMilestoneTap, onSaveAnnotation, onStartNew
       <section className="annotation-actions" aria-label="Between milestones">
         <h2>Between milestones</h2>
         <div className="action-row">
+          {/* Keep these controls rendered after completion so the logbook visibly locks capture actions. */}
           {ANNOTATION_KINDS.map((kind) => (
             <button key={kind} type="button" disabled={!captureOpen} onClick={() => setModalKind(kind)}>
               Add {kind}
             </button>
           ))}
-          <button type="button" disabled title="Not in v1">
-            Add Photo
-          </button>
-          <button type="button" disabled title="Not in v1">
-            Record Audio
-          </button>
+          {/* Media capture is out of v1 scope, but the placeholders must stay visible and disabled. */}
+          <span className="tooltip-control" data-tooltip="Not in v1">
+            <button type="button" disabled aria-label="Add Photo. Not in v1">
+              Add Photo
+            </button>
+          </span>
+          <span className="tooltip-control" data-tooltip="Not in v1">
+            <button type="button" disabled aria-label="Record Audio. Not in v1">
+              Record Audio
+            </button>
+          </span>
         </div>
       </section>
 

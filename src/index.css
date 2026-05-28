@@ -1,4 +1,5 @@
 :root {
+  /* EMI design tokens from design-reference/design-system.html. */
   --emi-gold: #edb012;
   --emi-dark: #404149;
   --emi-light-grey: #d2d2d9;
@@ -212,6 +213,7 @@ button {
 }
 
 .milestone-tile:not(.complete):disabled {
+  /* Locked future milestones keep their phase color, but read as inactive. */
   opacity: 0.45;
   filter: saturate(0.55);
 }
@@ -222,6 +224,7 @@ button {
 }
 
 .milestone-tile.next::after {
+  /* Draw the next marker inside the tile so it does not create false overflow. */
   content: '';
   position: absolute;
   bottom: 7px;
@@ -279,6 +282,40 @@ button {
   flex-wrap: wrap;
   gap: 12px;
   margin-top: 14px;
+}
+
+.tooltip-control {
+  position: relative;
+  display: inline-flex;
+}
+
+.tooltip-control::after {
+  /* Native title tooltips are delayed; this gives disabled media buttons immediate feedback. */
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 8px);
+  z-index: 2;
+  transform: translateX(-50%) translateY(4px);
+  border-radius: 6px;
+  padding: 6px 9px;
+  background: var(--emi-dark);
+  color: var(--emi-off-white);
+  font-family: 'Roboto Condensed', 'Roboto', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  opacity: 0;
+  pointer-events: none;
+  text-transform: none;
+  transition: opacity 120ms ease, transform 120ms ease;
+  white-space: nowrap;
+}
+
+.tooltip-control:hover::after,
+.tooltip-control:focus-within::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 
 .action-row button,

@@ -3,6 +3,7 @@ import {
   appendMilestoneEntry,
   calculateMetrics,
   getMetricStatus,
+  getMostRecentEvent,
   getNextMilestone,
   sortTimelineEntries,
 } from './repairHelpers';
@@ -54,6 +55,15 @@ describe('repair helper logic', () => {
       '2026-05-28T01:10:00.000Z',
       '2026-05-28T01:20:00.000Z',
     ]);
+  });
+
+  it('selects the most recent event by registeredAt instead of array position', () => {
+    const oldest: RepairEvent = { ...baseEvent, id: 'RE-1001', registeredAt: '2026-05-28T01:00:00.000Z' };
+    const newest: RepairEvent = { ...baseEvent, id: 'RE-1002', registeredAt: '2026-05-28T03:00:00.000Z' };
+    const middle: RepairEvent = { ...baseEvent, id: 'RE-1003', registeredAt: '2026-05-28T02:00:00.000Z' };
+
+    expect(getMostRecentEvent([oldest, newest, middle])?.id).toBe('RE-1002');
+    expect(getMostRecentEvent([])).toBeNull();
   });
 
   it('calculates expected metric minute durations from timestamps', () => {
